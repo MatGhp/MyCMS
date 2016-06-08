@@ -3,7 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCMS.DomainClasses", "MyCMS.DomainClasses\MyCMS.DomainClasses.csproj", "{77536DC5-81D8-4CB1-BEE5-0DB7825C8352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCMS.DataLayer", "MyCMS.DataLayer\MyCMS.DataLayer.csproj", "{0AFA42AA-457F-4402-A21D-C8E41C607603}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77536DC5-81D8-4CB1-BEE5-0DB7825C8352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77536DC5-81D8-4CB1-BEE5-0DB7825C8352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77536DC5-81D8-4CB1-BEE5-0DB7825C8352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77536DC5-81D8-4CB1-BEE5-0DB7825C8352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AFA42AA-457F-4402-A21D-C8E41C607603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFA42AA-457F-4402-A21D-C8E41C607603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFA42AA-457F-4402-A21D-C8E41C607603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFA42AA-457F-4402-A21D-C8E41C607603}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
