@@ -15,7 +15,7 @@ namespace MyCMS.DataLayer
         IUnitOfWork
     {
         public ApplicationDbContext() :
-            base("DefaultConnection")
+            base("MyCMSconnectionString")
         { }
 
         public DbSet<Post> Posts { set; get; }
