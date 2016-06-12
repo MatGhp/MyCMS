@@ -11,7 +11,7 @@ using Microsoft.Owin.Security;
 namespace AspNetIdentityDependencyInjectionSample.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public partial class ManageController : Controller
     {
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
@@ -28,7 +28,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Account/AddPhoneNumber
-        public ActionResult AddPhoneNumber()
+        public virtual ActionResult AddPhoneNumber()
         {
             return View();
         }
@@ -37,7 +37,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         // POST: /Account/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
+        public virtual async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -59,7 +59,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
+        public virtual ActionResult ChangePassword()
         {
             return View();
         }
@@ -68,7 +68,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public virtual async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         //
         // POST: /Manage/DisableTFA
         [HttpPost]
-        public async Task<ActionResult> DisableTFA()
+        public virtual async Task<ActionResult> DisableTFA()
         {
             await _userManager.SetTwoFactorEnabledAsync(_userManager.GetCurrentUserId(), false);
             var user = await _userManager.GetCurrentUserAsync();
@@ -105,7 +105,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         //
         // POST: /Manage/EnableTFA
         [HttpPost]
-        public async Task<ActionResult> EnableTFA()
+        public virtual async Task<ActionResult> EnableTFA()
         {
             await _userManager.SetTwoFactorEnabledAsync(_userManager.GetCurrentUserId(), true);
             var user = await _userManager.GetCurrentUserAsync();
@@ -119,7 +119,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         //
         // POST: /Manage/ForgetBrowser
         [HttpPost]
-        public ActionResult ForgetBrowser()
+        public virtual ActionResult ForgetBrowser()
         {
             _authenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
             return RedirectToAction("Index", "Manage");
@@ -127,7 +127,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Account/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public virtual async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -154,7 +154,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LinkLogin(string provider)
+        public virtual ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
             return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
@@ -162,7 +162,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Manage/LinkLoginCallback
-        public async Task<ActionResult> LinkLoginCallback()
+        public virtual async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await _authenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
@@ -175,7 +175,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Account/Manage
-        public async Task<ActionResult> ManageLogins(ManageMessageId? message)
+        public virtual async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
@@ -199,7 +199,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         //
         // POST: /Manage/RememberBrowser
         [HttpPost]
-        public ActionResult RememberBrowser()
+        public virtual ActionResult RememberBrowser()
         {
             var rememberBrowserIdentity = _authenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
             _authenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, rememberBrowserIdentity);
@@ -208,7 +208,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Account/RemoveLogin
-        public async Task<ActionResult> RemoveLogin()
+        public virtual async Task<ActionResult> RemoveLogin()
         {
             var userId = _userManager.GetCurrentUserId();
             var linkedAccounts = await _userManager.GetLoginsAsync(userId);
@@ -220,7 +220,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
+        public virtual async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
         {
             ManageMessageId? message;
             var result = await _userManager.RemoveLoginAsync(_userManager.GetCurrentUserId(), new UserLoginInfo(loginProvider, providerKey));
@@ -241,7 +241,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         }
         //
         // GET: /Account/RemovePhoneNumber
-        public async Task<ActionResult> RemovePhoneNumber()
+        public virtual async Task<ActionResult> RemovePhoneNumber()
         {
             var result = await _userManager.SetPhoneNumberAsync(_userManager.GetCurrentUserId(), null);
             if (!result.Succeeded)
@@ -258,7 +258,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Manage/SetPassword
-        public ActionResult SetPassword()
+        public virtual ActionResult SetPassword()
         {
             return View();
         }
@@ -267,7 +267,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
+        public virtual async Task<ActionResult> SetPassword(SetPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -290,7 +290,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
 
         //
         // GET: /Account/VerifyPhoneNumber
-        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
+        public virtual async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
@@ -303,7 +303,7 @@ namespace AspNetIdentityDependencyInjectionSample.Controllers
         // POST: /Account/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
+        public virtual async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
             {

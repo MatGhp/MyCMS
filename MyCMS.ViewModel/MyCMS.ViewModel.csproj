@@ -45,11 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommentViewModel.cs" />
+    <Compile Include="HomePageViewModel.cs" />
     <Compile Include="PostViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyCMS.DomainClasses\MyCMS.DomainClasses.csproj">
+      <Project>{77536dc5-81d8-4cb1-bee5-0db7825c8352}</Project>
+      <Name>MyCMS.DomainClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

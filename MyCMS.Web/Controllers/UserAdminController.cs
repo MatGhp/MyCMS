@@ -8,10 +8,10 @@ using System.Web.Mvc;
 using MyCMS.DomainClasses;
 using MyCMS.Web.ViewModels.Identity;
 using MyCMS.ServiceLayer.Contracts;
-namespace MyCMS.Controllers
+namespace MyCMS.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class UsersAdminController : Controller
+    public partial class UsersAdminController : Controller
     {
         private readonly IApplicationRoleManager _roleManager;
         private readonly IApplicationUserManager _userManager;
@@ -24,7 +24,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Users/Create
-        public async Task<ActionResult> Create()
+        public virtual async Task<ActionResult> Create()
         {
             //Get the list of Roles
             ViewBag.RoleId = new SelectList(await _roleManager.GetAllCustomRolesAsync(), "Name", "Name");
@@ -34,7 +34,7 @@ namespace MyCMS.Controllers
         //
         // POST: /Users/Create
         [HttpPost]
-        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
+        public virtual async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Users/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public virtual async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -88,7 +88,7 @@ namespace MyCMS.Controllers
         // POST: /Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int? id)
+        public virtual async Task<ActionResult> DeleteConfirmed(int? id)
         {
             if (ModelState.IsValid)
             {
@@ -115,7 +115,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Users/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public virtual async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -130,7 +130,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Users/Edit/1
-        public async Task<ActionResult> Edit(int? id)
+        public virtual async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -161,7 +161,7 @@ namespace MyCMS.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
+        public virtual async Task<ActionResult> Edit([Bind(Include = "Email,Id")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -200,13 +200,13 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Users/
-        public async Task<ActionResult> Index()
+        public virtual async Task<ActionResult> Index()
         {
             return View(await _userManager.GetAllUsersAsync());
         }
 
 
-        public ActionResult AdminUsers()
+        public virtual ActionResult AdminUsers()
         {
             return View(_roleManager.GetApplicationUsersInRole("Admin"));
         }

@@ -1,35 +1,45 @@
 ﻿using System.Web.Mvc;
 using MyCMS.ServiceLayer.Contracts;
-namespace MyCMS.Controllers
+using MyCMS.ViewModel;
+namespace MyCMS.Web.Controllers
 {
-    public class HomeController : Controller
+    public partial class HomeController : Controller
     {
         private readonly IApplicationUserManager _userManager;
-        public HomeController(IApplicationUserManager userManager)
+        private IPostService _postService;
+        private ICommentService _commentService;
+
+        public HomeController(IApplicationUserManager userManager, IPostService postService, ICommentService commentService)
         {
             _userManager = userManager;
+            _postService = postService;
+            _commentService = commentService;
         }
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
-            return View();
+            var model = new HomePageViewModel
+            {
+                Posts = _postService.GetAllPosts()
+            };
+            return View(model);
         }
 
         [Authorize]
-        public ActionResult About()
+        public virtual ActionResult About()
         {
             ViewBag.Message = "Your app description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public virtual ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
 
-        public ActionResult GetData()
+        public virtual ActionResult GetData()
         {
             var applicationUser = _userManager.GetCurrentUser();
             return Content(applicationUser.UserName);

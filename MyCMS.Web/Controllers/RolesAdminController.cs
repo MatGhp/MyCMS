@@ -8,10 +8,10 @@ using MyCMS.Web.ViewModels.Identity;
 using MyCMS.ServiceLayer.Contracts;
 using Microsoft.AspNet.Identity;
 
-namespace MyCMS.Controllers
+namespace MyCMS.Web.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class RolesAdminController : Controller
+    public partial class RolesAdminController : Controller
     {
         private readonly IApplicationRoleManager _roleManager;
         private readonly IApplicationUserManager _userManager;
@@ -25,7 +25,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Roles/Create
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace MyCMS.Controllers
         //
         // POST: /Roles/Create
         [HttpPost]
-        public async Task<ActionResult> Create(RoleViewModel roleViewModel)
+        public virtual async Task<ActionResult> Create(RoleViewModel roleViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -51,7 +51,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Roles/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public virtual async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -69,7 +69,7 @@ namespace MyCMS.Controllers
         // POST: /Roles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int? id, string deleteUser)
+        public virtual async Task<ActionResult> DeleteConfirmed(int? id, string deleteUser)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Roles/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public virtual async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -130,7 +130,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Roles/Edit/Admin
-        public async Task<ActionResult> Edit(int? id)
+        public virtual async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -149,7 +149,7 @@ namespace MyCMS.Controllers
         // POST: /Roles/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Name,Id")] RoleViewModel roleModel)
+        public virtual async Task<ActionResult> Edit([Bind(Include = "Name,Id")] RoleViewModel roleModel)
         {
             if (ModelState.IsValid)
             {
@@ -163,7 +163,7 @@ namespace MyCMS.Controllers
 
         //
         // GET: /Roles/
-        public async Task<ActionResult> Index()
+        public virtual async Task<ActionResult> Index()
         {
             return View(await _roleManager.GetAllCustomRolesAsync());
         }
