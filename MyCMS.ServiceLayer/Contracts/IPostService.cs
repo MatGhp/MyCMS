@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyCMS.DomainClasses;
+using MyCMS.ViewModel;
+
 namespace MyCMS.ServiceLayer.Contracts
 {
     public interface IPostService
     {
-        void AddNewPost(Post post);
-        IList<Post> GetAllPosts();
+        //Task<PostViewModel> Create(PostViewModel viewModel);
+        void Create(PostViewModel viewModel);
+        PostViewModel FindPost(int id);
+        IEnumerable<PostViewModel> GetAllPosts();
     }
 }

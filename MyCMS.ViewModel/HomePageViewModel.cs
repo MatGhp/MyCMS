@@ -5,6 +5,6 @@ namespace MyCMS.ViewModel
 {
     public class HomePageViewModel
     {
-        public IList<Post> Posts { get; set; }
+        public IEnumerable<PostViewModel> Posts { get; set; }
     }
 }

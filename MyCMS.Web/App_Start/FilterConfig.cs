@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using MyCMS.Web.Filters;
 
 namespace MyCMS
 {
@@ -6,6 +7,7 @@ namespace MyCMS
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            filters.Add(new ElmahHandledErrorLoggerFilter());
             filters.Add(new HandleErrorAttribute());
         }
     }

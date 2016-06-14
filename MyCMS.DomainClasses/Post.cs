@@ -11,7 +11,8 @@ namespace MyCMS.DomainClasses
             PublishedDate = DateTime.Now;
         }
 
-        public string AddedBy { get; set; }
+        public string AddedBy { get;
+            set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public string ExcerptText { get; set; }
         public string PostSlug { get; set; }

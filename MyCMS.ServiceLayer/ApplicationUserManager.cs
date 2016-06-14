@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -101,6 +102,7 @@ namespace MyCMS.ServiceLayer
 
         public void SeedDatabase()
         {
+            
             const string name = "admin@example.com";
             const string password = "Admin@123456";
             const string roleName = "Admin";
@@ -127,6 +129,10 @@ namespace MyCMS.ServiceLayer
             {
                 var result = this.AddToRole(user.Id, role.Name);
             }
+
+          
+            
+
         }
 
         private void createApplicationUserManager()

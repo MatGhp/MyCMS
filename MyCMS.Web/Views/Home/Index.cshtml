@@ -6,7 +6,19 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-9 col-md-push-3">
+        <div class="row hidden-xs">
+            <div class="col-md-12" id="slideShow">
+                @foreach (var post in Model.Posts)
+                {
+                    Html.RenderPartial("ShowPost", post);
+                }
+            </div>
+        </div>
+    </div>
+    <aside class="col-md-3 aside-panel col-md-pull-9 as"></aside>
+</div>
 
 <p>
     @Html.ActionLink("Create New", "Create")

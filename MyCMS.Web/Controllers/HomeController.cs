@@ -1,6 +1,9 @@
 ﻿using System.Web.Mvc;
+using MyCMS.DataLayer;
+//using MyCMS.DomainClasses;
 using MyCMS.ServiceLayer.Contracts;
 using MyCMS.ViewModel;
+using System;
 namespace MyCMS.Web.Controllers
 {
     public partial class HomeController : Controller
@@ -8,12 +11,17 @@ namespace MyCMS.Web.Controllers
         private readonly IApplicationUserManager _userManager;
         private IPostService _postService;
         private ICommentService _commentService;
-
-        public HomeController(IApplicationUserManager userManager, IPostService postService, ICommentService commentService)
+        private IUnitOfWork _uow;
+        public HomeController(IApplicationUserManager userManager, IPostService postService,
+            ICommentService commentService, IUnitOfWork uow)
         {
             _userManager = userManager;
             _postService = postService;
             _commentService = commentService;
+            _uow = uow;
+
+            
+
         }
         public virtual ActionResult Index()
         {

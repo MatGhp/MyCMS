@@ -12,7 +12,7 @@ namespace MyCMS.ViewModel
         public int Id { set; get; }
 
         public string AddedBy { get; set; }
-
+        //public virtual ICollection<Comment> Comments { get; set; }
         public string ExcerptText { get; set; }
         public string PostSlug { get; set; }
         public string Body { get; set; }
@@ -22,11 +22,11 @@ namespace MyCMS.ViewModel
         public DateTime? EditedDate { get; set; }
 
         public int PostedByUserId { get; set; }
-
+        //public ApplicationUser PostedByUser { get; set; }
 
         public int ViewNumber { get; set; }
         public string MetaDescription { get; set; }
-
+        //public virtual ICollection<Tag> Tags { get; set; }
         public string Image { get; set; }
     }
 }
