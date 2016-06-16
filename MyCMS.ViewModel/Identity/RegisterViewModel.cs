@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MyCMS.Web.ViewModels.Identity
+namespace MyCMS.ViewModels.Identity
 {
-    public class ResetPasswordViewModel
+    public class RegisterViewModel
     {
         [Required]
         [EmailAddress]
@@ -19,7 +19,5 @@ namespace MyCMS.Web.ViewModels.Identity
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        public string Code { get; set; }
     }
 }

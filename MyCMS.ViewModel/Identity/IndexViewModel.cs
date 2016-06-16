@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity;
 
-namespace MyCMS.Web.ViewModels.Identity
+namespace MyCMS.ViewModels.Identity
 {
     public class IndexViewModel
     {

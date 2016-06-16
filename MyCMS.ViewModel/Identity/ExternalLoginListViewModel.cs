@@ -1,4 +1,4 @@
-namespace MyCMS.Web.ViewModels.Identity
+namespace MyCMS.ViewModels.Identity
 {
     public class ExternalLoginListViewModel
     {

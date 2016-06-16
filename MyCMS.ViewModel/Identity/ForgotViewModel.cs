@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MyCMS.Web.ViewModels.Identity
+namespace MyCMS.ViewModels.Identity
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ForgotViewModel
     {
         [Required]
         [Display(Name = "Email")]

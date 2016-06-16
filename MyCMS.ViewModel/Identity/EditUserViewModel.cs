@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
-namespace MyCMS.Web.ViewModels.Identity
+namespace MyCMS.ViewModels.Identity
 {
     public class EditUserViewModel
     {

@@ -4,7 +4,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using MyCMS.DomainClasses;
-using MyCMS.Web.ViewModels.Identity;
+using MyCMS.ViewModels.Identity;
 using MyCMS.ServiceLayer.Contracts;
 using Microsoft.AspNet.Identity;
 

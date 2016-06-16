@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MyCMS.DomainClasses;
-using MyCMS.Web.ViewModels.Identity;
+using MyCMS.ViewModels.Identity;
 using MyCMS.ServiceLayer.Contracts;
 namespace MyCMS.Web.Controllers
 {
