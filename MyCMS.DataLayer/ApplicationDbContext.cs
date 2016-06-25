@@ -18,6 +18,7 @@ namespace MyCMS.DataLayer
             base("MyCMSconnectionString")
         { }
 
+        public DbSet<Category> Categories { set; get; }
         public DbSet<Post> Posts { set; get; }
         public DbSet<Comment> Comments { set; get; }
         public DbSet<Tag> Tags { set; get; }

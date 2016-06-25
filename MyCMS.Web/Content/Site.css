@@ -44,3 +44,5 @@ input[type="checkbox"].input-validation-error {
 .aside-panel {
     background-color: #ebebeb;
 }
+.carousel,.item,.active{height:150px;}
+.carousel-inner{height:150px;}

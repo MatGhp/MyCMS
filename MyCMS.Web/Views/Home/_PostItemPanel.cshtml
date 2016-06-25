@@ -1,0 +1,16 @@
+﻿@model MyCMS.ViewModel.PostViewModel
+@{ Layout = "";}
+<article class="" itemprop="blogPost" itemtype="http://schema.org/BlogPosting" itemscope>
+    <div class="panel panel-default top30">
+
+        <div class="panel-heading">
+            <header class=""><h3>@Model.Title</h3></header>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12">@Html.Raw(Model.Body)</div>
+        </div>
+        <div class="panel-footer ">@Model.PublishedDate</div>
+
+    </div>
+
+</article>

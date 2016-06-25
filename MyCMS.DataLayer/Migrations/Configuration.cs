@@ -17,7 +17,7 @@ namespace MyCMS.DataLayer.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         { 
-
+            //var 
         }
 
     }

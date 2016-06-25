@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MyCMS.ViewModel.PostViewModel>
+<div class="panel panel-default top30">
+    <div class="panel-heading">
+        <h3 class="panel-title">Last Changes</h3>
+    </div>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <ol class="carousel-indicators">
+                    @{
+                        var i = 0;
+                        foreach (var post in Model)
+                        {
+                            var itemClass = i == 0 ? "active" : "";
+                            <li data-target="#myCarousel" data-slide-to="@i++" class="@itemClass"></li>
+                        }
+                    }
+
+                </ol>
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                    @{
+                        var j = 0;
+                        foreach (var post in Model)
+                        {
+                            var itemClass = j++ == 0 ? "item active" : "item";
+                            <div class="@itemClass">
+                                <h4><span class="glyphicon glyphicon-eye-open"> @post.Title</span></h4>
+
+                                @Html.Raw(post.ExcerptText)
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <!-- Carousel controls -->
+            <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</div>
+

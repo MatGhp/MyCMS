@@ -1,45 +1,129 @@
-﻿@using MyCMS.ViewModel
-@model MyCMS.ViewModel.HomePageViewModel
-
-
+﻿@model MyCMS.ViewModel.HomePageViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My CMS";
 }
 
 <div class="row">
-    <div class="col-md-9 col-md-push-3">
-        <div class="row hidden-xs">
-            <div class="col-md-12" id="slideShow">
-                @foreach (var post in Model.Posts)
+    @*-------------sidebar block1*@
+    <div id="tagList" class="col-md-3">
+        <div class="panel panel-default top30 visible-lg visible-md">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#"><i class="glyphicon glyphicon-list-alt"> Categories</i></a>
+                </h3>
+            </div>
+            <ul class="list-group col-md-12" id="tagslist">
+                @foreach (var cat in Model.Categories)
                 {
-                    Html.RenderPartial("ShowPost", post);
+                    var linkId = "cat" + cat.Id;
+                    <li class="list-group-item" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-asterisk" title=""></i>
+                        </a>
+                        <a href="#" id=@linkId> +@cat.Name</a>
+                        <span class="badge badge-primary pull-right">@cat.PostCount</span>
+
+                    </li>
                 }
+            </ul>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="next pull-right pageButton">
+                            All Categories<span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="panel panel-default top30 visible-lg visible-md">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#"><i class="glyphicon glyphicon-list-alt"> User Area</i></a>
+                </h3>
+            </div>
+            <ul class="list-group col-md-12" id="tagslist">
+               
+                    <li class="list-group-item" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-apple" title=""></i>
+                        </a>
+                        <a href="@Url.Action("Create","Home")"> New Post</a>
+                    </li>
+                <li class="list-group-item" role="presentation">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-apple" title=""></i>
+                    </a>
+                    <a href="#"> Edit Profile</a>
+                </li>
+                <li class="list-group-item" role="presentation">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-apple" title=""></i>
+                    </a>
+                    <a href="#"> Show my posts</a>
+                </li>
+
+
+            </ul>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="#" class="next pull-right pageButton">
+                            All Categories<span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default top30 ">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <a href="#"><i class="glyphicon glyphicon-list-alt"> Site visit information</i></a>
+                </h3>
+            </div>
+
+            <div class="panel-body">
+                Site visit information...
+            </div>
+
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-12 ">
+                        @*<a href="#" class="next pull-right pageButton">
+                                <span aria-hidden="true"></span>
+                            </a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <aside class="col-md-3 aside-panel col-md-pull-9 as"></aside>
+    @*-------------sidebar block1*@
+    <!-- /sidebar -->
+    <div class="col-md-9">
+        
+        @{Html.RenderPartial("_DisplayCarousel", Model.Posts);}
+
+        <div id="postArea">
+            @foreach (var post in Model.Posts)
+            {
+                Html.RenderPartial("_PostItemPanel", post);
+            }
+            @*@{ Html.RenderPartial("_LisPostAjax", Model);}*@
+        </div>
+
+    </div>
 </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+@section scripts{
+    <script>
+        $(function () {
+            $('#btnTempCreate').on('Click', function () {
 
-    <tr>
-        <th></th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model.Posts)
-    {
-        <tr>
-            <td>@Html.LabelForModel(item)</td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */}) |
-                @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})
-            </td>
-        </tr>
-    }
+            });
 
-</table>
+        })
+    </script>
+}

@@ -101,11 +101,15 @@
     <Compile Include="ApplicationSignInManager.cs" />
     <Compile Include="ApplicationUserManager.cs" />
     <Compile Include="AutoMapperProfiles\AutoMapperExtention.cs" />
+    <Compile Include="AutoMapperProfiles\CategoryProfile.cs" />
+    <Compile Include="AutoMapperProfiles\CommentProfile.cs" />
     <Compile Include="AutoMapperProfiles\PostProfile.cs" />
+    <Compile Include="CategoryService.cs" />
     <Compile Include="CommentService.cs" />
     <Compile Include="Contracts\IApplicationRoleManeger.cs" />
     <Compile Include="Contracts\IApplicationSignInManager.cs" />
     <Compile Include="Contracts\IApplicationUserManager.cs" />
+    <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\ICommentService.cs" />
     <Compile Include="Contracts\ICustomRoleStore.cs" />
     <Compile Include="Contracts\ICustomUserStore.cs" />

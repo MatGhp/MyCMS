@@ -32,7 +32,8 @@ namespace MyCMS.ServiceLayer
             IApplicationRoleManager roleManager,
             IDataProtectionProvider dataProtectionProvider,
             IIdentityMessageService smsService,
-            IIdentityMessageService emailService)
+            IIdentityMessageService emailService
+          )
             : base(store)
         {
             _store = store;
@@ -102,7 +103,7 @@ namespace MyCMS.ServiceLayer
 
         public void SeedDatabase()
         {
-            
+
             const string name = "admin@example.com";
             const string password = "Admin@123456";
             const string roleName = "Admin";
@@ -130,8 +131,16 @@ namespace MyCMS.ServiceLayer
                 var result = this.AddToRole(user.Id, role.Name);
             }
 
-          
-            
+
+            //_postService.Create(new ViewModel.PostViewModel
+            //{
+            //    PostedByUserId = user.Id,
+            //    Body = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx",
+
+            //    AddedBy = "Kamal",
+            //    Title = "new title",
+            //    ViewNumber = 0
+            //});
 
         }
 

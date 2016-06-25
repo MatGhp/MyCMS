@@ -10,9 +10,29 @@ namespace MyCMS.ServiceLayer.Contracts
 {
     public interface IPostService
     {
-        //Task<PostViewModel> Create(PostViewModel viewModel);
-        void Create(PostViewModel viewModel);
+
+        PostViewModel Add(AddPostViewModel viewModel);
+
         PostViewModel FindPost(int id);
+
         IEnumerable<PostViewModel> GetAllPosts();
+
+        void RemovePostById(int id);
+
+        EditPostViewModel GetPostForEdit(int id);
+
+        IList<PostViewModel> GetPostList(int page, int count);
+
+        int Count { get; }
+
+        void IncrementVisitedNumber(int id);
+
+        Post Find(int id);
+
+        IList<PostViewModel> GetUserPosts(string userName, int page, int count);
+
+        int GetUserPostsCount(string userName);
+
+        Post GetPostById(int id);
     }
 }

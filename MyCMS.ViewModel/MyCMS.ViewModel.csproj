@@ -85,7 +85,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddPostViewModel.cs" />
+    <Compile Include="CategoryViewModel.cs" />
     <Compile Include="CommentViewModel.cs" />
+    <Compile Include="EditPostViewModel.cs" />
     <Compile Include="HomePageViewModel.cs" />
     <Compile Include="Identity\AddPhoneNumberViewModel.cs" />
     <Compile Include="Identity\ChangePasswordViewModel.cs" />

@@ -9,5 +9,17 @@ namespace MyCMS.DomainClasses
     public class BaseEntity
     {
         public int Id { get; set; }
+
+        //public ApplicationUser ApplicationUser
+        //{
+        //    get
+        //    {
+        //        throw new System.NotImplementedException();
+        //    }
+
+        //    set
+        //    {
+        //    }
+        //}
     }
 }

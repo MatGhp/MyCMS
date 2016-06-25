@@ -92,6 +92,7 @@ namespace MyCMS.Web.IocConfig
 
                ioc.For<IPostService>().Use<PostService>();
                ioc.For<ICommentService>().Use<CommentService>();
+               ioc.For<ICategoryService>().Use<CategoryService>();
 
                ioc.AddRegistry<AutomapperRegistry>();
                ioc.Scan(scanner => scanner.WithDefaultConventions());

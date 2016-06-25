@@ -23,6 +23,7 @@ namespace MyCMS.ServiceLayer
         public void AddNewComment(Comment comment)
         {
             _comments.Add(comment);
+            _uow.SaveAllChanges();
         }
 
         public IList<Comment> GetAllComments()

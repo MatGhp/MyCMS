@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MyCMS.DomainClasses;
 using MyCMS.ViewModel;
 
@@ -21,6 +16,12 @@ namespace MyCMS.ServiceLayer.AutoMapperProfiles
 
             CreateMap<PostViewModel, Post>()
                 .IgnoreAllNonExisting();
+
+            CreateMap<AddPostViewModel, Post>().IgnoreAllNonExisting();
+            CreateMap<Post, AddPostViewModel>().IgnoreAllNonExisting();
+
+            CreateMap<EditPostViewModel, Post>().IgnoreAllNonExisting();
+            CreateMap<Post, EditPostViewModel>().IgnoreAllNonExisting();
         }
 
     }
