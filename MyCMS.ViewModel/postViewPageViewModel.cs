@@ -10,5 +10,6 @@ namespace MyCMS.ViewModel
     {
         public PostViewModel Post { get; set; }
         public IList<CommentViewModel> Comments { get; set; }
+        public CommentViewModel NewComment { set; get; }
     }
 }
