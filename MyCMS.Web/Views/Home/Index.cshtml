@@ -4,23 +4,25 @@
 }
 
 <div class="row">
+
     @*-------------sidebar block1*@
-    <div id="tagList" class="col-md-3">
-        <div class="panel panel-default top30 visible-lg visible-md">
+    <div id="tagList" class="col-md-3  hidden-xs">
+        <div class="panel panel-default top30 ">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <a href="#"><i class="glyphicon glyphicon-list-alt"> Categories</i></a>
                 </h3>
             </div>
-            <ul class="list-group col-md-12" id="tagslist">
+            <ul class="list-group col-md-12" id="categoryDiv">
                 @foreach (var cat in Model.Categories)
                 {
                     var linkId = "cat" + cat.Id;
-                    <li class="list-group-item" role="presentation">
-                        <a href="#">
-                            <i class="glyphicon glyphicon-asterisk" title=""></i>
+
+                <li class="list-group-item" role="presentation">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-asterisk" title=""></i>
                         </a>
-                        <a href="#" id=@linkId> +@cat.Name</a>
+                        <a href="#" id=@linkId> @cat.Name</a>
                         <span class="badge badge-primary pull-right">@cat.PostCount</span>
 
                     </li>
@@ -36,46 +38,48 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default top30 visible-lg visible-md">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <a href="#"><i class="glyphicon glyphicon-list-alt"> User Area</i></a>
-                </h3>
-            </div>
-            <ul class="list-group col-md-12" id="tagslist">
-               
+        @if (Request.IsAuthenticated &&(User.IsInRole("User") || User.IsInRole("Admin")))
+        {
+            <div class="panel panel-default top30">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a href="#"><i class="glyphicon glyphicon-list-alt"> User Area</i></a>
+                    </h3>
+                </div>
+                <ul class="list-group col-md-12" id="userPanel">
+
                     <li class="list-group-item" role="presentation">
                         <a href="#">
                             <i class="glyphicon glyphicon-apple" title=""></i>
                         </a>
-                        <a href="@Url.Action("Create","Home")"> New Post</a>
+                        <a href="@Url.Action("Create", "Home")"> New Post</a>
                     </li>
-                <li class="list-group-item" role="presentation">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-apple" title=""></i>
-                    </a>
-                    <a href="#"> Edit Profile</a>
-                </li>
-                <li class="list-group-item" role="presentation">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-apple" title=""></i>
-                    </a>
-                    <a href="#"> Show my posts</a>
-                </li>
-
-
-            </ul>
-            <div class="panel-footer">
-                <div class="row">
-                    <div class="col-md-12">
-                        <a href="#" class="next pull-right pageButton">
-                            All Categories<span aria-hidden="true">→</span>
+                    <li class="list-group-item" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-apple" title=""></i>
                         </a>
+                        <a href="#"> Edit Profile</a>
+                    </li>
+                    <li class="list-group-item" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-apple" title=""></i>
+                        </a>
+                        @Html.ActionLink("Show my posts","UserPostList","Home");
+                    </li>
+
+
+                </ul>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a href="#" class="next pull-right pageButton">
+                                All Categories<span aria-hidden="true">→</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        }
         <div class="panel panel-default top30 ">
             <div class="panel-heading">
                 <h3 class="panel-title">
@@ -101,13 +105,14 @@
     </div>
     @*-------------sidebar block1*@
     <!-- /sidebar -->
-    <div class="col-md-9">
-        
+    <div class="col-md-9 col-xs-12">
+
         @{Html.RenderPartial("_DisplayCarousel", Model.Posts);}
 
         <div id="postArea">
             @foreach (var post in Model.Posts)
             {
+               
                 Html.RenderPartial("_PostItemPanel", post);
             }
             @*@{ Html.RenderPartial("_LisPostAjax", Model);}*@

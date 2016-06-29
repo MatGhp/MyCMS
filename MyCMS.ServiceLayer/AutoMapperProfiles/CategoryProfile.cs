@@ -11,10 +11,10 @@ namespace MyCMS.ServiceLayer.AutoMapperProfiles
 
         protected override void Configure()
         {
-            
+
             CreateMap<Category, CategoryViewModel>()
                 .ForMember(d => d.PostCount, m => m.MapFrom((s => s.Posts.Count)))
-                                .IgnoreAllNonExisting();
+                                                .IgnoreAllNonExisting();
             //.ForMember(d=> d.PostedByUserId , m=>m.MapFrom((s=>s.PostedByUserId)))
 
             CreateMap<CategoryViewModel, Category>()

@@ -9,6 +9,7 @@ namespace MyCMS.ServiceLayer.Contracts
     public interface ICategoryService
     {
         IList<CategoryViewModel> GetAll();
+        IList<CategoryViewModel> GetUserPostsCategories(string username);
         CategoryViewModel Find(int Id);
         void Add(CategoryViewModel categoryViewModel);
     }

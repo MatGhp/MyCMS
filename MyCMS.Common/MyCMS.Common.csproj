@@ -78,9 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute.cs" />
     <Compile Include="HtmlCleaner\HtmlSanitizer.cs" />
-    <Compile Include="Json\JsonNetResult.cs" />
+    <Compile Include="Json\StandardJsonResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

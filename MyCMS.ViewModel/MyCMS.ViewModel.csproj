@@ -111,6 +111,7 @@
     <Compile Include="Identity\VerifyCodeViewModel.cs" />
     <Compile Include="Identity\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="PostViewModel.cs" />
+    <Compile Include="postViewPageViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,10 +5,12 @@ using MyCMS.ServiceLayer.Contracts;
 using MyCMS.ViewModel;
 using System;
 using MyCMS.Common.HtmlCleaner;
+using MyCMS.Common.Controller;
 using MyCMS.Common.Filters;
+
 namespace MyCMS.Web.Controllers
 {
-    public partial class HomeController : Controller
+    public partial class HomeController : BaseController
     {
         private readonly IApplicationUserManager _userManager;
         private IPostService _postService;
@@ -36,6 +38,8 @@ namespace MyCMS.Web.Controllers
             return View(model);
         }
 
+
+
         [HttpGet]
         public virtual ActionResult Create()
         {
@@ -43,8 +47,8 @@ namespace MyCMS.Web.Controllers
             {
                 AddedBy = _userManager.GetCurrentUser().UserName,
                 CategoryList = _categoryService.GetAll()
-        };
-            return View("Create", viewModel);
+            };
+            return View(nameof(Create), viewModel);
         }
 
         [HttpPost]
@@ -54,14 +58,14 @@ namespace MyCMS.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Create", postVM);
+                return View(nameof(Create), postVM);
             }
             postVM.Body = postVM.Body.ToSafeHtml();
             postVM.ExcerptText = postVM.ExcerptText.ToSafeHtml();
             postVM.PostedByUserId = _userManager.GetCurrentUserId();
             _postService.Add(postVM);
-           
-            return RedirectToAction("Index");
+
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -76,10 +80,10 @@ namespace MyCMS.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("CreateCategory", category);
+                return View(nameof(CreateCategory), category);
             }
             _categoryService.Add(category);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -104,6 +108,28 @@ namespace MyCMS.Web.Controllers
             return Content(applicationUser.UserName);
         }
 
-
+        [Authorize]
+        public virtual ActionResult UserPostList()
+        {
+            string userName = _userManager.GetCurrentUser().UserName;
+            var model = new HomePageViewModel
+            {
+                Posts = _postService.GetUserPosts(userName),
+                Categories = _categoryService.GetUserPostsCategories(userName)
+            };
+            return View(nameof(Index), model);
+        }
+        [AllowAnonymous]
+        public virtual ActionResult PostView(int postId)
+        {
+            var postViewPageViewModel = new postViewPageViewModel
+            {
+                Post = _postService.Find(postId),
+                Comments = _commentService.GetPostComments(postId)
+            };
+            return View(nameof(PostView), postViewPageViewModel);
+        }
     }
+
+   
 }

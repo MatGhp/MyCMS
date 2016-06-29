@@ -13,7 +13,7 @@ namespace MyCMS.ViewModel
             AddedDate = DateTime.Now;
         }
         public int Id { get; set; }
-        public DateTime AddedDate { get; set; }
+        public DateTime AddedDate { get; }
         public string AuthorEmail { get; set; }
         public string AuthorIP { get; set; }
         public string AuthorName { get; set; }

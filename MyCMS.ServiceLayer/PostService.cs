@@ -40,10 +40,10 @@ namespace MyCMS.ServiceLayer
             _posts.Add(post);
             _uow.SaveAllChanges();
 
-            return FindPost(post.Id);
+            return Find(post.Id);
         }
 
-        public PostViewModel FindPost(int id)
+        public PostViewModel Find(int id)
         {
             var post = _posts.FirstOrDefault(i => i.Id == id);
             return _mappingEngine.Map<PostViewModel>(post);
@@ -51,7 +51,7 @@ namespace MyCMS.ServiceLayer
 
         public IEnumerable<PostViewModel> GetAllPosts()
         {
-            return _mappingEngine.Map<IEnumerable<PostViewModel>>(_posts.OrderByDescending(p=>p.PublishedDate).ToList());
+            return _mappingEngine.Map<IEnumerable<PostViewModel>>(_posts.OrderByDescending(p => p.PublishedDate).ToList());
         }
 
         public void RemovePostById(int id)
@@ -82,10 +82,7 @@ namespace MyCMS.ServiceLayer
             _posts.Find(id).ViewNumber += 1;
         }
 
-        public Post Find(int id)
-        {
-            return _posts.Find(id);
-        }
+       
 
         public IList<PostViewModel> GetUserPosts(string userName, int page, int count)
         {
@@ -93,14 +90,17 @@ namespace MyCMS.ServiceLayer
             return _mappingEngine.Map<IList<PostViewModel>>(posts);
         }
 
-        public int GetUserPostsCount(string userName)
+        public int GetUserPostsCount(string username)
         {
-            return _posts.Count(post => post.PostedByUser.UserName == userName);
+            return _posts.Count(post => post.PostedByUser.UserName == username);
         }
 
-        public Post GetPostById(int id)
+        public IList<PostViewModel> GetUserPosts(string username)
         {
-            return _posts.Find(id);
+            var userPosts = _posts.Where(post => post.PostedByUser.UserName == username).ToList();
+            if (userPosts.Count() > 0)
+                userPosts = userPosts.OrderByDescending(p => p.PublishedDate).ToList();
+            return null;
         }
 
         //public Post GetPostDataById(int id)

@@ -13,7 +13,7 @@ namespace MyCMS.ServiceLayer.Contracts
 
         PostViewModel Add(AddPostViewModel viewModel);
 
-        PostViewModel FindPost(int id);
+        
 
         IEnumerable<PostViewModel> GetAllPosts();
 
@@ -27,12 +27,13 @@ namespace MyCMS.ServiceLayer.Contracts
 
         void IncrementVisitedNumber(int id);
 
-        Post Find(int id);
+        PostViewModel Find(int id);
 
-        IList<PostViewModel> GetUserPosts(string userName, int page, int count);
+        IList<PostViewModel> GetUserPosts(string username, int page, int count);
 
-        int GetUserPostsCount(string userName);
+        int GetUserPostsCount(string username);
 
-        Post GetPostById(int id);
+        
+        IList<PostViewModel> GetUserPosts(string username);
     }
 }

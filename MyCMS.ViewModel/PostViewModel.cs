@@ -8,7 +8,11 @@ namespace MyCMS.ViewModel
 {
     public class PostViewModel
     {
-
+        public PostViewModel()
+        {
+            //Comments = new IEnumerable<CommentViewModel>();
+                 
+        }
         public int Id { set; get; }
 
         public string AddedBy { get; set; }
@@ -28,5 +32,7 @@ namespace MyCMS.ViewModel
         public string MetaDescription { get; set; }
         //public virtual ICollection<Tag> Tags { get; set; }
         public string Image { get; set; }
+
+        
     }
 }

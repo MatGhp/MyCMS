@@ -1,0 +1,45 @@
+﻿@model MyCMS.ViewModel.postViewPageViewModel
+@{
+    ViewBag.Title = "PostView";
+}
+
+<article class="" itemprop="blogPost" itemtype="http://schema.org/BlogPosting" itemscope>
+    <div class="panel panel-default top30">
+
+        <div class="panel-heading">
+            <header class=""><h3>@Model.Post.Title</h3></header>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-12">@Html.Raw(Model.Post.Body)</div>
+        </div>
+        <div class="panel-footer ">@Model.Post.PublishedDate</div>
+    </div>
+
+
+</article>
+<div><h3>Comments goes here...</h3></div>
+
+<h2>Leave a comment</h2>
+@using (Html.BeginForm())
+{ @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div class="col-md-10 form-group">
+            <label class="sr-only" for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+
+        <div class="col-md-10 form-group">
+            <label class="sr-only" for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
+        </div>
+
+        <div class="col-md-12 form-group">
+            <label class="sr-only" for="email">Comment</label>
+            <textarea class="form-control" rows="3" id="comment" placeholder="Comment"></textarea>
+        </div>
+
+        <div class="col-md-12 form-group">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+}

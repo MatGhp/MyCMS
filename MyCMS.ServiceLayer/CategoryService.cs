@@ -38,6 +38,13 @@ namespace MyCMS.ServiceLayer
             return _mappingEngine.Map<IList<CategoryViewModel>>(_categories.ToList());
         }
 
+        public IList<CategoryViewModel> GetUserPostsCategories(string username)
+        {
+            var cats = _categories.Where(category => category.Posts.Count(p => p.PostedByUser.UserName == username) > 0).ToList();
+            return _mappingEngine.Map<IList<CategoryViewModel>>(cats);
+        }
+
+
         public void Add(CategoryViewModel categoryViewModel)
         {
             var category = _mappingEngine.Map<Category>(categoryViewModel);
