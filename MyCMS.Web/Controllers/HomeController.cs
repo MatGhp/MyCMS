@@ -4,6 +4,7 @@ using MyCMS.DataLayer;
 using MyCMS.ServiceLayer.Contracts;
 using MyCMS.ViewModel;
 using System;
+using System.Net;
 using MyCMS.Common.HtmlCleaner;
 using MyCMS.Common.Controller;
 using MyCMS.Common.Filters;
@@ -120,16 +121,37 @@ namespace MyCMS.Web.Controllers
             return View(nameof(Index), model);
         }
         [AllowAnonymous]
-        public virtual ActionResult PostView(int postId)
+        public virtual ActionResult PostView(int id)
         {
             var postViewPageViewModel = new postViewPageViewModel
             {
-                Post = _postService.Find(postId),
-                Comments = _commentService.GetPostComments(postId)
+                Post = _postService.Find(id),
+                Comments = _commentService.GetPostComments(id)
             };
             return View(nameof(PostView), postViewPageViewModel);
         }
+
+        
+        [HttpPost]
+        [AjaxOnly]
+        public virtual ActionResult LoadCommentArea()
+        {
+            return PartialView("_AddCommentBox", new CommentViewModel());
+        }
+        [AjaxOnly]
+        [HttpPost]
+        public virtual ActionResult AddComment(CommentViewModel commentVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                JsonError("Invalid comment has entered");
+                //return new HttpStatusCodeResult(statusCode: HttpStatusCode.NotAcceptable);
+            }
+            commentVM.AuthorIp = Request.UserHostAddress;
+            _commentService.AddNewComment(commentVM);
+            return PartialView("_CommentBody",commentVM);
+        }
     }
 
-   
+
 }

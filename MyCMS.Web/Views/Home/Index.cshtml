@@ -18,9 +18,9 @@
                 {
                     var linkId = "cat" + cat.Id;
 
-                <li class="list-group-item" role="presentation">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-asterisk" title=""></i>
+                    <li class="list-group-item" role="presentation">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-asterisk" title=""></i>
                         </a>
                         <a href="#" id=@linkId> @cat.Name</a>
                         <span class="badge badge-primary pull-right">@cat.PostCount</span>
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        @if (Request.IsAuthenticated &&(User.IsInRole("User") || User.IsInRole("Admin")))
+        @if (Request.IsAuthenticated && (User.IsInRole("User") || User.IsInRole("Admin")))
         {
             <div class="panel panel-default top30">
                 <div class="panel-heading">
@@ -64,7 +64,7 @@
                         <a href="#">
                             <i class="glyphicon glyphicon-apple" title=""></i>
                         </a>
-                        @Html.ActionLink("Show my posts","UserPostList","Home");
+                        @Html.ActionLink("Show my posts", "UserPostList", "Home");
 
                     </li>
 
@@ -113,7 +113,7 @@
         <div id="postArea">
             @foreach (var post in Model.Posts)
             {
-               
+
                 Html.RenderPartial("_PostItemPanel", post);
             }
             @*@{ Html.RenderPartial("_LisPostAjax", Model);}*@
@@ -129,7 +129,14 @@
 
 
             });
+            $('#btnAddcomment').on('Click', function () {
+                $.ajax({
+                    url: "/Home/AddComment/",
+                    type: "POST",
 
+                });
+            });
+            
         })
     </script>
 }

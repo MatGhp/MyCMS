@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using AutoMapper;
@@ -31,6 +32,8 @@ namespace MyCMS.ServiceLayer
         public void AddNewComment(CommentViewModel commentVM)
         {
             var comment = _mappingEngine.Map<Comment>(commentVM);
+            comment.AddedDate = DateTime.Now;
+            //comment.Post= 
             _comments.Add(comment);
             _uow.SaveAllChanges();
         }
@@ -45,5 +48,7 @@ namespace MyCMS.ServiceLayer
             var comments = _comments.Where(c => c.PostId == postId).AsNoTracking().ToList();
             return _mappingEngine.Map<IList<CommentViewModel>>(comments);
         }
+
+
     }
 }

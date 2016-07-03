@@ -1,0 +1,37 @@
+﻿@using MyCMS.ViewModel
+@model MyCMS.ViewModel.CommentViewModel
+@{
+    ViewBag.Title = "_CommentBody";
+    Layout = "";
+}
+@Html.HiddenFor(model => model.AuthorIp)
+@Html.HiddenFor(model => model.PostId)
+@Html.HiddenFor(model => model.Id)
+
+<div id="cmt+@Model.PostId" class="panel panel-default">
+    <div class="panel-heading">
+        @Html.DisplayFor(model => model.AuthorName)
+        @Html.DisplayFor(model => model.AddedDate)
+    </div>
+    <div class="panel-body">
+        @Html.DisplayFor(model => model.Body)
+    </div>
+    <div class="panel-footer">
+        <div id="replyDivId" class="fa-reply">
+            @Ajax.ActionLink("Reply", "LoadCommentArea", "Home", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "replyDivId" })
+            @*<a Href="#" id="cmd+@Model.Id" class="fa-reply" onclick='ShowCommentBox(cmd + @Model.Id)'>Reply</a>*@
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*ShowCommentBox = function(cmdId) {
+        $(cmdId).after(@{ Html.RenderPartial("_AddCommentBox", new CommentViewModel()); });
+    }*@
+</script>
+
+
+
+
+
+

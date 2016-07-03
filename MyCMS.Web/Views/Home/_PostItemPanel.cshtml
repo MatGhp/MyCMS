@@ -4,7 +4,7 @@
     <div class="panel panel-default top30">
 
         <div class="panel-heading">
-            <header class=""><h4>@Html.ActionLink(Model.Title, "PostView", new { postId = @Model.Id })</h4></header>
+            <header class=""><h4>@Html.ActionLink(Model.Title, "PostView", new { id = @Model.Id })</h4></header>
         </div>
         <div class="panel-body">
             <div class="col-md-12">@Html.Raw(Model.Body)</div>

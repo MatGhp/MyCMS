@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25402.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCMS.DomainClasses", "MyCMS.DomainClasses\MyCMS.DomainClasses.csproj", "{77536DC5-81D8-4CB1-BEE5-0DB7825C8352}"
 EndProject

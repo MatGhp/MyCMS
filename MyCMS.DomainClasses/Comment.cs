@@ -6,7 +6,7 @@ namespace MyCMS.DomainClasses
     {
         public virtual DateTime AddedDate { get; set; }
         public virtual string AuthorEmail { get; set; }
-        public virtual string AuthorIP { get; set; }
+        public virtual string AuthorIp { get; set; }
         public virtual string AuthorName { get; set; }
         public virtual string AuthorUrl { get; set; }
         public virtual string Body { get; set; }

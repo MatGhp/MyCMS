@@ -32,6 +32,8 @@ namespace MyCMS.Web.IocConfig
                 scanner.AssemblyContainingType<PostProfile>();
                 scanner.AddAllTypesOf<Profile>().NameBy(item => item.Name);
 
+                //scanner.AssemblyContainingType<CommentProfile>();
+                //scanner.AddAllTypesOf<Profile>().NameBy(item => item.Name);
                 //scanner.AssembliesFromApplicationBaseDirectory();
 
                 scanner.ConnectImplementationsToTypesClosing(typeof(ITypeConverter<,>))
